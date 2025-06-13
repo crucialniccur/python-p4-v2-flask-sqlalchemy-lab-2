@@ -30,3 +30,14 @@ class Item(db.Model):
 
     def __repr__(self):
         return f'<Item {self.id}, {self.name}, {self.price}>'
+
+
+# add Review model
+class Review(db.Model):
+    __tablename__ = 'reviews'
+
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String)
+
+    customer_id = db.relationship('Customer', back_populates='reviews')
+    item_id = db.relationship('Item', back_populates='reviews')
